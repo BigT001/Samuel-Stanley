@@ -1,0 +1,37 @@
+{
+  "name": "samuel-stanley",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@radix-ui/react-navigation-menu": "^1.1.4",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tabs": "^1.1.11",
+    "@radix-ui/react-toggle": "^1.1.8",
+    "bento-grid": "^0.1.1",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "next": "^15.3.2",
+    "next-themes": "^0.4.6",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwind-merge": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.0",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.31",
+    "postcss-import": "^16.1.0",
+    "postcss-nested": "^7.0.2",
+    "postcss-nesting": "^13.0.1",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
+  }
+}
