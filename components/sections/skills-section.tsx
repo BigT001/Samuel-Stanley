@@ -65,20 +65,24 @@ const skillCategories = [
 
 export function SkillsSection() {
 	return (
-		<section id="skills" className="border-b">
+		<section id="skills" className="border-b border-zinc-200 dark:border-zinc-800">
 			<div className="container py-12 md:py-24">
-				<h2 className="text-3xl font-bold tracking-tighter mb-8">Skills</h2>
+				<h2 className="text-3xl font-bold tracking-tighter mb-8 text-black dark:text-white transition-colors">Skills</h2>
 				<div className="grid md:grid-cols-2 gap-6">
 					{skillCategories.map((category, index) => (
-						<Card key={index}>
+						<Card key={index} className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 transition-colors hover:shadow-lg">
 							<CardHeader>
-								<CardTitle>{category.title}</CardTitle>
-								<CardDescription>{category.description}</CardDescription>
+								<CardTitle className="text-black dark:text-white transition-colors">{category.title}</CardTitle>
+								<CardDescription className="text-zinc-600 dark:text-zinc-400 transition-colors">{category.description}</CardDescription>
 							</CardHeader>
 							<CardContent>
 								<div className="flex flex-wrap gap-2">
 									{category.skills.map((skill, skillIndex) => (
-										<Badge key={skillIndex} variant="secondary">
+										<Badge 
+											key={skillIndex} 
+											variant="secondary"
+											className="bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white border border-zinc-200 dark:border-zinc-700 transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-700"
+										>
 											{skill}
 										</Badge>
 									))}

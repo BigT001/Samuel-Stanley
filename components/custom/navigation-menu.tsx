@@ -96,15 +96,11 @@ export function NavigationMenuTrigger({ className, children, ...props }: Navigat
   )
 }
 
-export function NavigationMenuContent({ className, children, ...props }: NavigationMenuContentProps) {
-  const { activeItem } = React.useContext(NavigationMenuContext)
-  
-  if (!activeItem) return null
-
+export function NavigationMenuContent({ className, children, ...props }: NavigationMenuContentProps) {  
   return (
     <div
       className={cn(
-        "absolute left-0 top-full w-full rounded-md border bg-popover p-4 shadow-md animate-in data-[side=bottom]:slide-in-from-top-1",
+        "absolute left-0 top-full z-50 min-w-[12rem] overflow-hidden rounded-md border bg-popover p-4 text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2",
         className
       )}
       {...props}
@@ -114,22 +110,29 @@ export function NavigationMenuContent({ className, children, ...props }: Navigat
   )
 }
 
+interface NavigationMenuLinkProps extends React.ComponentPropsWithoutRef<"a"> {
+  active?: boolean;
+  asChild?: boolean;
+}
+
 export function NavigationMenuLink({ 
   className, 
   active,
+  asChild,
   children,
   ...props 
 }: NavigationMenuLinkProps) {
+  const Comp = asChild ? React.Fragment : "a"
   return (
-    <a
+    <Comp
       className={cn(
         "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
         active && "bg-accent text-accent-foreground",
         className
       )}
-      {...props}
+      {...(!asChild && props)}
     >
       {children}
-    </a>
+    </Comp>
   )
 }

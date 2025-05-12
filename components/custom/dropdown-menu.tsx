@@ -7,7 +7,9 @@ interface DropdownMenuProps {
   children: React.ReactNode
 }
 
-interface DropdownMenuTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+interface DropdownMenuTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  asChild?: boolean
+}
 
 interface DropdownMenuContentProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -37,6 +39,13 @@ export function DropdownMenu({ children }: DropdownMenuProps) {
 
 export function DropdownMenuTrigger({ className, children, ...props }: DropdownMenuTriggerProps) {
   const { open, setOpen } = React.useContext(DropdownMenuContext)
+  if (props.asChild) {
+    return React.cloneElement(children as React.ReactElement, {
+      onClick: () => setOpen(!open),
+      'aria-expanded': open,
+      ...props
+    })
+  }
 
   return (
     <button

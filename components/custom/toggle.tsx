@@ -16,13 +16,13 @@ const Toggle = React.forwardRef<
   <TogglePrimitive.Root
     ref={ref}
     className={cn(
-      "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground",
+      "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-black dark:data-[state=on]:bg-white data-[state=on]:text-white dark:data-[state=on]:text-black",
       {
         "h-9 px-3": size === "default",
         "h-7 px-2": size === "sm",
         "h-11 px-4": size === "lg",
-        "border border-input bg-transparent": variant === "outline",
-        "hover:bg-transparent hover:text-current": variant === "ghost",
+        "border-2 border-black dark:border-white bg-transparent": variant === "outline",
+        "hover:bg-zinc-100 dark:hover:bg-zinc-900": variant === "ghost",
       },
       className
     )}

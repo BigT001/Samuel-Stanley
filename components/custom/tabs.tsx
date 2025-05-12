@@ -47,31 +47,23 @@ export function Tabs({
     [value, onValueChange]
   )
 
-  const actualValue = value !== undefined ? value : selectedValue
-
   return (
     <TabsContext.Provider
-      value={{ value: actualValue, onValueChange: handleValueChange }}
+      value={{ value: value ?? selectedValue, onValueChange: handleValueChange }}
     >
-      <div
-        className={cn("w-full", className)}
-        {...props}
-      >
+      <div className={cn("w-full", className)} {...props}>
         {children}
       </div>
     </TabsContext.Provider>
   )
 }
 
-export function TabsList({
-  className,
-  ...props
-}: TabsListProps) {
+export function TabsList({ className, ...props }: TabsListProps) {
   return (
     <div
       role="tablist"
       className={cn(
-        "inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground",
+        "inline-flex items-center justify-start w-full",
         className
       )}
       {...props}
@@ -79,56 +71,44 @@ export function TabsList({
   )
 }
 
-export function TabsTrigger({
-  className,
-  value,
-  children,
-  ...props
-}: TabsTriggerProps) {
-  const { value: selectedValue, onValueChange } = React.useContext(TabsContext)
-  const isSelected = selectedValue === value
+export function TabsTrigger({ className, value, ...props }: TabsTriggerProps) {
+  const context = React.useContext(TabsContext)
+  const isActive = context.value === value
 
   return (
     <button
       role="tab"
       type="button"
-      aria-selected={isSelected}
-      onClick={() => onValueChange(value)}
+      aria-selected={isActive}
       className={cn(
-        "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-        isSelected
-          ? "bg-background text-foreground shadow-sm"
-          : "hover:bg-background/50 hover:text-foreground",
+        "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm transition-all",
+        "hover:bg-muted/60 hover:text-foreground",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+        "disabled:pointer-events-none disabled:opacity-50",
+        isActive ? "bg-background text-foreground shadow-sm font-medium" : "text-muted-foreground",
         className
       )}
+      onClick={() => context.onValueChange(value)}
       {...props}
-    >
-      {children}
-    </button>
+    />
   )
 }
 
-export function TabsContent({
-  value,
-  className,
-  children,
-  ...props
-}: TabsContentProps) {
-  const { value: selectedValue } = React.useContext(TabsContext)
-  const isSelected = selectedValue === value
+export function TabsContent({ value, className, ...props }: TabsContentProps) {
+  const context = React.useContext(TabsContext)
 
-  if (!isSelected) return null
+  if (context.value !== value) {
+    return null
+  }
 
   return (
     <div
       role="tabpanel"
       className={cn(
-        "mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+        "mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
         className
       )}
       {...props}
-    >
-      {children}
-    </div>
+    />
   )
 }

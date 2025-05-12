@@ -20,7 +20,7 @@ export function ModeToggle() {
     <Toggle
       pressed={theme === "dark"}
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="h-9 w-9"
+      className="h-9 w-9 border-2 border-black dark:border-white bg-transparent hover:scale-105 active:scale-95 transition-transform duration-200"
       title="Toggle theme"
     >
       <svg
@@ -31,7 +31,7 @@ export function ModeToggle() {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+        className="h-4 w-4 rotate-0 scale-100 transition-all duration-300 dark:-rotate-90 dark:scale-0"
       >
         <circle cx="12" cy="12" r="4" />
         <path d="M12 2v2" />
@@ -51,11 +51,10 @@ export function ModeToggle() {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+        className="absolute h-4 w-4 rotate-90 scale-0 transition-all duration-300 dark:rotate-0 dark:scale-100"
       >
         <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
       </svg>
-      <span className="sr-only">Toggle theme</span>
     </Toggle>
   )
 }

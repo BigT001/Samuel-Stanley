@@ -2,7 +2,8 @@
 
 import * as React from "react"
 import { OTPInput, OTPInputContext } from "input-otp"
-import { Dot } from "lucide-react"
+// TODO: Create Dot icon in @/components/icons/icons if needed
+import { Dot } from "@/components/icons/icons"
 
 import { cn } from "@/lib/utils"
 

@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import { cn } from "@/lib/utils"
-import { MainNav } from "@/components/nav/main-nav";
+import { RootLayoutInner } from "@/components/layouts/root-layout";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -37,10 +37,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="relative flex min-h-screen flex-col">
-            <MainNav />
-            <div className="flex-1">{children}</div>
-          </div>
+          <RootLayoutInner>
+            {children}
+          </RootLayoutInner>
         </ThemeProvider>
       </body>
     </html>

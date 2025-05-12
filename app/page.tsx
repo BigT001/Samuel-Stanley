@@ -10,8 +10,8 @@ export default function Home() {
       <HeroSection />
       <ProjectsSection />
       <CallToAction />
-      <SkillsSection />
-      <ContactSection />
+      {/* <SkillsSection /> */}
+      {/* <ContactSection />  */}
     </div>
   )
 }

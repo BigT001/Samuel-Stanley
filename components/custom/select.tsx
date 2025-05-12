@@ -38,15 +38,30 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             {placeholder}
           </option>
         )}
-        {options.map((option) => (
-          <option
-            key={option.value}
-            value={option.value}
-            disabled={option.disabled}
-          >
-            {option.label}
-          </option>
-        ))}
+        {  options.map((option) => {
+          // Extract text content from React elements
+          const getTextContent = (node: React.ReactNode): string => {
+            if (typeof node === 'string') return node
+            if (typeof node === 'number') return node.toString()
+            if (Array.isArray(node)) return node.map(getTextContent).join('')
+            if (React.isValidElement(node)) {
+              return getTextContent(node.props.children)
+            }
+            return ''
+          }
+          
+          const label = getTextContent(option.label)
+          
+          return (
+            <option
+              key={option.value}
+              value={option.value}
+              disabled={option.disabled}
+            >
+              {label}
+            </option>
+          )
+        })}
       </select>
     )
   }

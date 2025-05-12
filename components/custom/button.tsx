@@ -10,15 +10,12 @@ export interface ButtonProps
   asChild?: boolean
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "default", size = "default", asChild, ...props }, ref) => {
-    const baseStyles = "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-400 disabled:pointer-events-none disabled:opacity-50"
-    
-    const variants = {
-      default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
-      outline: "border border-input bg-transparent hover:bg-accent hover:text-accent-foreground",
-      ghost: "hover:bg-accent hover:text-accent-foreground",
-      link: "text-primary underline-offset-4 hover:underline"
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(  ({ className, variant = "default", size = "default", asChild, ...props }, ref) => {
+    const baseStyles = "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-400 disabled:pointer-events-none disabled:opacity-50";    const variants = {
+      default: "bg-black dark:bg-white text-white dark:text-black shadow hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all duration-300",
+      outline: "border-2 border-black dark:border-white bg-transparent text-black dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-900",
+      ghost: "text-black dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-900",
+      link: "text-black dark:text-white hover:text-zinc-800 dark:hover:text-zinc-200 underline-offset-4 hover:underline"
     }
     
     const sizes = {

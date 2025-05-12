@@ -13,46 +13,44 @@ import { Layers, Layout, Globe, Lock, Code, Component, Package } from "@/compone
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="border-b">
+    <section id="projects" className="border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black transition-colors duration-300">
       <div className="container py-12 md:py-24">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Featured Projects</h2>
-          <p className="max-w-[900px] text-zinc-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-zinc-400">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-black dark:text-white transition-colors duration-300">Featured Projects</h2>
+          <p className="max-w-[900px] text-zinc-600 dark:text-zinc-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed transition-colors duration-300">
             Check out some of my recent work
           </p>
         </div>
         <div className="mt-10">
-          <Tabs defaultValue="all">
-            <TabsList className="flex justify-center mb-8">
-              <TabsTrigger value="all" className="flex items-center gap-2">
-                <Layers className="h-4 w-4" />
-                All
-              </TabsTrigger>
-              <TabsTrigger value="dashboards" className="flex items-center gap-2">
-                <Layout className="h-4 w-4" />
-                Dashboards
-              </TabsTrigger>
-              <TabsTrigger value="landing" className="flex items-center gap-2">
-                <Globe className="h-4 w-4" />
-                Landing Pages
-              </TabsTrigger>
-              <TabsTrigger value="auth" className="flex items-center gap-2">
-                <Lock className="h-4 w-4" />
-                Authentication
-              </TabsTrigger>
-              <TabsTrigger value="apps" className="flex items-center gap-2">
-                <Code className="h-4 w-4" />
-                Apps
-              </TabsTrigger>
-              <TabsTrigger value="components" className="flex items-center gap-2">
-                <Component className="h-4 w-4" />
-                Components
-              </TabsTrigger>
-              <TabsTrigger value="icons" className="flex items-center gap-2">
-                <Package className="h-4 w-4" />
-                Icons
-              </TabsTrigger>
-            </TabsList>
+          <Tabs defaultValue="all" className="w-full">
+            <div className="flex justify-center w-full">
+              <TabsList className="inline-flex justify-center gap-4 border-b border-zinc-200 dark:border-zinc-800 px-4 bg-zinc-100 dark:bg-zinc-900 rounded-lg transition-colors duration-300">
+                <TabsTrigger 
+                  value="all" 
+                  className="flex items-center gap-2 px-3 py-3 text-black dark:text-white hover:scale-105 data-[state=active]:scale-95 data-[state=active]:bg-white dark:data-[state=active]:bg-black data-[state=active]:shadow-inner rounded-md transition-all duration-200"
+                >
+                  <Layers className="h-4 w-4" />
+                  <span className="font-medium">All</span>
+                </TabsTrigger>
+                {[
+                  { value: "landing", icon: Globe, label: "Landing Pages" },
+                  { value: "dashboards", icon: Layout, label: "Dashboards" },
+                  { value: "auth", icon: Lock, label: "Authentication" },
+                  { value: "apps", icon: Code, label: "Apps" },
+                  { value: "components", icon: Component, label: "Components" },
+                  { value: "icons", icon: Package, label: "Icons" }
+                ].map(({ value, icon: Icon, label }) => (
+                  <TabsTrigger 
+                    key={value}
+                    value={value} 
+                    className="flex items-center gap-2 px-3 py-3 text-black dark:text-white hover:scale-105 data-[state=active]:scale-95 data-[state=active]:bg-white dark:data-[state=active]:bg-black data-[state=active]:shadow-inner rounded-md transition-all duration-200"
+                  >
+                    <Icon className="h-4 w-4" />
+                    <span className="font-medium">{label}</span>
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </div>
             <TabsContent value="all">
               <BentoGrid>
                 {[
